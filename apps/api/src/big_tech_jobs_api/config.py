@@ -24,6 +24,9 @@ class Settings(BaseSettings):
     ollama_base_url: str | None = "http://localhost:11434"
     ollama_model: str | None = None
     ollama_timeout_seconds: float = 2.0
+    session_cookie_name: str = "btj_session"
+    session_ttl_days: int = 30
+    session_cookie_secure: bool = False
 
 
 @lru_cache

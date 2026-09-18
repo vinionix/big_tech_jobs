@@ -5,9 +5,11 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, FastAPI, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 
+from big_tech_jobs_api.auth import router as auth_router
 from big_tech_jobs_api.config import get_settings
 from big_tech_jobs_api.database import get_engine
 from big_tech_jobs_api.health import HealthReport, HealthService, get_health_service
+from big_tech_jobs_api.profiles import router as profiles_router
 
 
 @asynccontextmanager
@@ -27,7 +29,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_allowed_origins,
     allow_credentials=True,
-    allow_methods=["GET"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["Content-Type", "X-Correlation-ID"],
 )
 
@@ -58,4 +60,6 @@ async def readiness(
     return report
 
 
+router.include_router(auth_router)
+router.include_router(profiles_router)
 app.include_router(router)

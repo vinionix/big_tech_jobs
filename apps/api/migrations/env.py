@@ -4,6 +4,7 @@ from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
+from big_tech_jobs_api import models  # noqa: F401
 from big_tech_jobs_api.config import get_settings
 from big_tech_jobs_api.database import Base
 
