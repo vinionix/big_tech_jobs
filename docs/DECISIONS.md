@@ -32,9 +32,20 @@
 
 ## Decisões para fases futuras
 
-- autenticação por sessão opaca e cookie HTTP-only;
 - interface inicial em português;
 - score e cobertura/confiança como valores separados;
 - frequência persistida antes de existir scheduler;
 - migrações apenas para entidades em uso;
 - nenhum deploy de produção antes de política de retenção, modelo de ameaça e proteção adequada de dados sensíveis.
+
+## ADR-006 — Sessões opacas e senhas Argon2
+
+- **Status:** aceito.
+- **Decisão:** senhas são derivadas com Argon2; o navegador recebe um identificador aleatório em cookie `HttpOnly` e o banco armazena somente seu SHA-256. Sessões expiram e podem ser revogadas no logout.
+- **Motivo:** impede acesso do JavaScript ao segredo da sessão, permite revogação no servidor e evita armazenar tokens utilizáveis no banco.
+
+## ADR-007 — Completude não bloqueante
+
+- **Status:** aceito.
+- **Decisão:** a completude usa pesos determinísticos e lista dados ausentes, mas não impede o uso por falta de informação opcional.
+- **Motivo:** informa a qualidade provável da personalização sem inventar fatos ou excluir profissionais com trajetórias diferentes.

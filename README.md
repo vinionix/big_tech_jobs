@@ -1,6 +1,6 @@
 # Big Tech Jobs
 
-Plataforma multiusuário para descoberta, recomendação e acompanhamento de vagas de tecnologia. O projeto está sendo construído em fatias verificáveis; a Fase 1A entrega somente a fundação executável.
+Plataforma multiusuário para descoberta, recomendação e acompanhamento de vagas de tecnologia. O projeto está sendo construído em fatias verificáveis; as Fases 1A e 1B entregam a fundação, identidade e perfil profissional.
 
 ## Estado atual
 
@@ -12,10 +12,14 @@ Implementado:
 - frontend consumindo a API real por proxy same-origin;
 - configuração de Alembic, testes e análise estática;
 - Ollama opcional, sem fallback para APIs pagas.
+- cadastro, login, logout e sessão opaca por cookie seguro;
+- onboarding retomável, completude e perfil editável;
+- experiências, projetos, formação, competências, idiomas, certificações, links e objetivos;
+- quantidade, frequência, amplitude e score mínimo configuráveis por usuário;
+- isolamento de recursos entre contas.
 
 Ainda não implementado:
 
-- autenticação e perfis;
 - busca e recomendação de vagas;
 - LangGraph;
 - adaptação de currículo;
@@ -28,7 +32,7 @@ Consulte [ROADMAP.md](docs/ROADMAP.md) para o recorte das próximas entregas.
 - Docker com Compose v2; ou
 - Python 3.12, `uv`, Node.js compatível com Next.js e `pnpm` para execução sem Docker.
 
-O Ollama é opcional na Fase 1A. Modelos locais não cobram por requisição, mas exigem memória e processamento da máquina. Nenhum modelo é baixado automaticamente.
+O Ollama é opcional nesta etapa. Modelos locais não cobram por requisição, mas exigem memória e processamento da máquina. Nenhum modelo é baixado automaticamente.
 
 ## Executar com Docker
 
@@ -72,6 +76,15 @@ API_INTERNAL_URL=http://localhost:8000 pnpm dev:web
 
 PostgreSQL e Redis ainda precisam estar acessíveis nas URLs configuradas.
 
+Antes de iniciar a API pela primeira vez, aplique as migrações:
+
+```bash
+cd apps/api
+uv run alembic upgrade head
+```
+
+No Docker Compose, essa migração é aplicada automaticamente antes do servidor. Depois, acesse `/cadastro`, crie uma conta e continue pelo onboarding. A quantidade de vagas aceita valores de 1 a 500; esse teto é uma proteção técnica configurada no contrato, não uma meta de produto.
+
 ## Qualidade
 
 ```bash
@@ -87,7 +100,7 @@ pnpm test:web
 pnpm build:web
 ```
 
-O ambiente usado para criar a Fase 1A não possui Docker; portanto, a configuração foi validada estruturalmente e o workflow de CI executará `docker compose config`. A inicialização conjunta dos containers ainda deve ser confirmada antes da aprovação definitiva.
+O workflow de CI também aplica a migração em PostgreSQL real e valida `docker compose config`.
 
 ## Configuração
 

@@ -11,6 +11,22 @@ permissions:
 jobs:
   backend:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: big_tech_jobs_test
+          POSTGRES_USER: big_tech_jobs
+          POSTGRES_PASSWORD: test-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U big_tech_jobs -d big_tech_jobs_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql+asyncpg://big_tech_jobs:test-password@localhost:5432/big_tech_jobs_test
     defaults:
       run:
         working-directory: apps/api
@@ -23,6 +39,7 @@ jobs:
       - run: uv sync --locked --all-groups
       - run: uv run ruff check .
       - run: uv run mypy src tests
+      - run: uv run alembic upgrade head
       - run: uv run pytest -q
 
   frontend:

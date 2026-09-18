@@ -35,3 +35,11 @@ O navegador usa o caminho same-origin `/backend/*`. O servidor Next.js encaminha
 ## Evolução prevista
 
 As próximas fases adicionam módulos internos para identidade, perfis, vagas, matching, execuções, currículos e candidaturas. Cada módulo deverá preservar isolamento por usuário e contratos explícitos.
+
+## Identidade e perfil
+
+A Fase 1B adiciona `UserAccount`, `UserSession`, `UserProfile`, `WorkExperience`, `Project`, `Education`, `Skill`, `Language`, `Certification`, `ProfessionalLink`, `CareerGoal` e `JobSearchPreference`. Todo recurso mutável contém `user_id`, e as consultas combinam o identificador do recurso com o usuário da sessão; uma tentativa de acesso cruzado responde como recurso inexistente.
+
+O cookie contém um token aleatório opaco. Somente o hash SHA-256 é persistido; a senha é derivada com Argon2. O cookie é `HttpOnly`, `SameSite=Lax` e passa a exigir HTTPS quando `SESSION_COOKIE_SECURE=true`.
+
+A tela usa o proxy same-origin já definido na Fase 1A. O progresso do onboarding é persistido no perfil, enquanto a completude é recalculada a partir dos dados aprovados pelo usuário.

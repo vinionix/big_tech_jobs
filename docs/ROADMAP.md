@@ -2,6 +2,8 @@
 
 ## Fase 1A — Fundação
 
+**Concluída.**
+
 - monorepo, API e frontend;
 - PostgreSQL, Redis e Ollama opcional;
 - health checks;
@@ -9,6 +11,8 @@
 - documentação operacional.
 
 ## Fase 1B — Identidade e perfil
+
+**Implementada; aguardando aprovação.**
 
 - conta, login, logout e sessão opaca;
 - onboarding retomável;

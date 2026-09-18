@@ -20,4 +20,4 @@ ENV PATH="/app/.venv/bin:$PATH" \
 
 EXPOSE 8000
 
-CMD ["uvicorn", "big_tech_jobs_api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "alembic upgrade head && exec uvicorn big_tech_jobs_api.main:app --host 0.0.0.0 --port 8000"]

@@ -25,3 +25,118 @@ button,
 a {
   outline-offset: 4px;
 }
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+label,
+legend {
+  color: #cbd5e1;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  background: rgb(15 23 42 / 80%);
+  padding: 0.75rem 0.875rem;
+  color: #f8fafc;
+  font: inherit;
+}
+
+.field:focus {
+  border-color: #22d3ee;
+  outline: 2px solid rgb(34 211 238 / 25%);
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.7rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: 150ms ease;
+}
+
+.primary-button {
+  border: 1px solid #22d3ee;
+  background: #22d3ee;
+  color: #082f49;
+}
+
+.primary-button:hover {
+  background: #67e8f9;
+}
+
+.secondary-button {
+  border: 1px solid #475569;
+  background: rgb(15 23 42 / 70%);
+  color: #e2e8f0;
+}
+
+.secondary-button:hover {
+  border-color: #94a3b8;
+}
+
+.card {
+  border: 1px solid rgb(51 65 85 / 80%);
+  border-radius: 1.25rem;
+  background: rgb(15 23 42 / 68%);
+  padding: 1.5rem;
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 14%);
+}
+
+.eyebrow {
+  color: #67e8f9;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  color: #f8fafc;
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}
+
+.list-item button,
+.tag button {
+  color: #fda4af;
+  font-size: 0.75rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: #164e63;
+  padding: 0.4rem 0.75rem;
+  color: #cffafe;
+  font-size: 0.875rem;
+}
